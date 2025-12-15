@@ -1,12 +1,16 @@
 # voice-to-text-app
 Project Overview
 This project is a cross-platform desktop voice-to-text application inspired by Wispr Flow.It allows users to record their voice and get real-time transcription using the Deepgram AI speech-to-text API.The focus of this project is on functionality, fast transcription, and a clean architecture rather than pixel-perfect UI.
+
+
 Tech Stack
 **Frontend:** React + JSX
 **Desktop Framework:** Tauri (Windows, macOS, Linux)
 **Audio & Microphone Handling**: MediaRecorder API
 **Speech Recognition / AI:** Deepgram Real-Time API
 **State Management:** React useState (simple local state)
+
+
 Features
 - **Push-to-Talk Voice Input**: Press and hold to record, release to stop. Provides an intuitive way to capture voice input.
 - **Microphone Access & Audio Capture**: Requests system permissions and captures high-quality audio safely.
@@ -20,6 +24,9 @@ Features
 - **Error Handling & Status Messages**: Graceful handling of microphone permission errors, network issues, and Deepgram API errors. Status messages provide feedback instead of intrusive alerts.
 - **Robust Deepgram Integration**: Automatic reconnection on WebSocket failure, centralized error handling, and logging for reliability.
 - **Cross-Platform Desktop Support**: Built with Tauri to run on Windows, macOS, and Linux with lightweight performance.
+
+
+
 Setup Instructions
 1. Clone the repo: `git clone https://github.com/username/voice-to-text-app.git`
 2. Navigate to the folder: `cd voice-to-text-app`
