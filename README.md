@@ -28,7 +28,7 @@ Features
 
 
 Setup Instructions
-1. Clone the repo: `git clone https://github.com/username/voice-to-text-app.git`
+1. Clone the repo: `git clone https://github.com/Kanagavalli4567/voice-to-text-app.git`
 2. Navigate to the folder: `cd voice-to-text-app`
 3. Install dependencies: `npm install`
 4. Start the app: `npm run dev`
