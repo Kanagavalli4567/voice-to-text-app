@@ -1,0 +1,59 @@
+// test-connection.html (save and open in browser)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deepgram Connection Test</title>
+</head>
+<body>
+    <h1>Deepgram Connection Test</h1>
+    <button onclick="testConnection()">Test Connection</button>
+    <div id="output"></div>
+    
+    <script>
+        async function testConnection() {
+            const output = document.getElementById('output');
+            output.innerHTML = '<p>Testing...</p>';
+            
+            // Replace with your actual API key
+            const apiKey = prompt("03c6fcfbfc6c9acfc119c18cc4432d94c1ea8cfe");
+            
+            if (!apiKey) {
+                output.innerHTML = '<p style="color:red">No API key provided</p>';
+                return;
+            }
+            
+            try {
+                // Test REST API first
+                const response = await fetch('https://api.deepgram.com/v1/projects', {
+                    headers: { 'Authorization': `Token ${apiKey}` }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`REST API failed: ${response.status}`);
+                }
+                
+                output.innerHTML += '<p style="color:green">✅ REST API working</p>';
+                
+                // Test WebSocket
+                const ws = new WebSocket(`wss://api.deepgram.com/v1/listen?access_token=${apiKey}`);
+                
+                ws.onopen = () => {
+                    output.innerHTML += '<p style="color:green">✅ WebSocket connected</p>';
+                    ws.close();
+                };
+                
+                ws.onerror = (error) => {
+                    output.innerHTML += '<p style="color:red">❌ WebSocket failed</p>';
+                };
+                
+                ws.onclose = (event) => {
+                    output.innerHTML += `<p>WebSocket closed: ${event.code} ${event.reason}</p>`;
+                };
+                
+            } catch (error) {
+                output.innerHTML = `<p style="color:red">❌ Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
